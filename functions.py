@@ -2,36 +2,35 @@ from main import *
 import pyspark
 import folium as fol
 
-
 def leastTraveled():
-    print("Least traveled aiports: ")
-    temp_int = int(input("\n How many would you like to see? \n"))
-    df_route.dropna()
-    temp_df = df_route.groupby("Source Airport").count()
+    print("Least traveled originating aiports: ")
+    temp_int = int(input("\n How many would you like to see? \n"))  # lets user request the amount of columns shown
+    df_route2 = df_route.dropna(subset="Source Airport")            # drops null values appearing in column so they dont appear in data
+    temp_df = df_route2.groupby("Source Airport").count()
     temp_df.sort("count").show(temp_int)
     return
 
 def mostTraveled():
     print("Most traveled aiports: ")
-    temp_int = int(input("\n How many would you like to see? \n"))
-    df_route.dropna()
-    temp_df = df_route.groupby("Source Airport").count()
+    temp_int = int(input("\n How many would you like to see? \n"))  # lets user request the amount of columns shown
+    df_route2 = df_route.dropna(subset="Source Airport")            # drops null values appearing in column so they dont appear in data
+    temp_df = df_route2.groupby("Source Airport").count()
     temp_df.sort(desc("count")).show(temp_int)
     return
 
 def destinationMostTraveledTo():
     print("Airport most traveled to: ")
-    temp_int = int(input("\n How many would you like to see? \n"))
-    df_route.dropna()
-    temp_df = df_route.groupby("Destination Airport").count()
+    temp_int = int(input("\n How many would you like to see? \n"))  # lets user request the amount of columns shown
+    df_route2 = df_route.dropna(subset="Destination Airport")       # drops null values appearing in column so they dont appear in data
+    temp_df = df_route2.groupby("Destination Airport").count()
     temp_df.sort(desc("count")).show(temp_int)
     return
 
 def destinationLeastTraveledTo():
     print("Airport most traveled to: ")
-    temp_int = int(input("\n How many would you like to see? \n"))
-    df_route.dropna()
-    temp_df = df_route.groupby("Destination Airport").count()
+    temp_int = int(input("\n How many would you like to see? \n"))  # lets user request the amount of columns shown
+    df_route2 = df_route.dropna(subset="Destination Airport")       # drops null values appearing in column so they dont appear in data
+    temp_df = df_route2.groupby("Destination Airport").count()
     temp_df.sort("count").show(temp_int)
     return
 
